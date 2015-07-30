@@ -1,5 +1,4 @@
-# path_distance_calculator
-Distance calculator for paths created by ROS Global Planners.
+# How to use
 
 Run the script using:
 
@@ -7,7 +6,7 @@ python calculate_path_distance.py <Global Planner nav_msgs/Path topic> 0
 
 Then set a goal point (using rviz) and the script will calculate the distance of the path.
 
-For example for navfn the aboe command will be:
+For example for navfn the above command will be:
 
 python calculate_path_distance.py /move_base/NavfnROS/plan 0
 
