@@ -13,9 +13,11 @@ Example: python calculate_path_distance.py /move_base/GlobalPlanner/plan 0 0
 To get the start point values, run on a new terminal:
 
 rostopic echo /initialpose
+
 Using rviz set your robot's start point. All the needed values will be then printed on the previous terminal.
 
 To get the goal point values, run on a new terminal:
 
 rostopic echo move_base_simple/goal
+
 Using rviz set your robot's goal point. All the needed values will be then printed on the previous terminal.
