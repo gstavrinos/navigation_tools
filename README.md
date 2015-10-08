@@ -1,13 +1,21 @@
 # How to use
 
-Parameters: nav_msgs/Path topic | automate start and goal points (1/0) | start point x | start point y | goal point x | goal point y
+Parameters: nav_msgs/Path topic | automate start and goal points (1/0) | follow path (1/0) | start point position x | start point position y | start point orientation z |  start point orientation w | goal point position x | goal point y | goal point orientation z | goal point orientation w
 
-Example: python calculate_path_distance.py /move_base/NavfnROS/plan 1 1.0 0 100 37.42
+Example: Example: python calculate_path_distance.py /move_base/GlobalPlanner/plan 1 0 1.0 -0.65 2.0 -1.307 100 37.42 0 0
 
-If you run the script with automate start and goal points == 0, you can run it with only two parameters.
+If you run the script with automate start and goal points == 0, you can run it with only three parameters.
 
-Example: python calculate_path_distance.py /move_base/NavfnROS/plan 0
+Example: python calculate_path_distance.py /move_base/GlobalPlanner/plan 0 0
 
-# Robot not following the path
+# Find the start and goal point values easily
 
-You will notice that the robot does not follow the generated path. This is done on purpose, because the aim of this script is to calculate the distance of the path. If you need the robot to follow the path comment out the pub_stop.publish(GoalID()) line.
+To get the start point values, run on a new terminal:
+
+rostopic echo /initialpose
+Using rviz set your robot's start point. All the needed values will be then printed on the previous terminal.
+
+To get the goal point values, run on a new terminal:
+
+rostopic echo move_base_simple/goal
+Using rviz set your robot's goal point. All the needed values will be then printed on the previous terminal.
