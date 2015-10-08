@@ -2,7 +2,7 @@
 
 Run the script using:
 
-python calculate_path_distance.py <Global Planner nav_msgs/Path topic> 0
+python calculate_path_distance.py [Global Planner nav_msgs/Path topic] 0
 
 Then set a goal point (using rviz) and the script will calculate the distance of the path.
 

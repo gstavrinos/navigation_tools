@@ -15,9 +15,27 @@ subscriber = None
 
 def calculate_path_distance():
     global subscriber
-    if not len(sys.argv) == 3:
-        print "Please specify the nav_msgs/Path topic you want to subscribe to and if you want to automate start and goal points (1/0)"
+    if not len(sys.argv) >= 3:
+        print "Parameters: nav_msgs/Path topic | automate start and goal points (1/0) | start point x | start point y | goal point x | goal point y"
+	print "-------------------------------------------------------------------------------------"
+	print "Example: python calculate_path_distance.py /move_base/NavfnROS/plan 1 1.0 0 100 37.42"
+	print "-------------------------------------------------------------------------------------"
+	print "If you run the script with automate start and goal points == 0, you can run it with only two parameters."
+	print "---------------------------------------------------------------------"
+	print "Example: python calculate_path_distance.py /move_base/NavfnROS/plan 0"
+	print "---------------------------------------------------------------------"
     else:
+	if sys.argv[2] == 1:
+		if not len(sys.argv) == 7:
+			print "Parameters: nav_msgs/Path topic | automate start and goal points (1/0) | start point x | start point y | goal point x | goal point y"
+		        print "-------------------------------------------------------------------------------------"
+		        print "Example: python calculate_path_distance.py /move_base/NavfnROS/plan 1 1.0 0 100 37.42"
+		        print "-------------------------------------------------------------------------------------"
+		        print "If you run the script with automate start and goal points == 0, you can run it with only two parameters."
+		        print "---------------------------------------------------------------------"
+		        print "Example: python calculate_path_distance.py /move_base/NavfnROS/plan 0"
+        		print "---------------------------------------------------------------------"
+			sys.exit(0)
         topic = str(sys.argv[1])
         rospy.init_node('calculate_path_distance', anonymous=True)
         pub_goal = rospy.Publisher('move_base_simple/goal', PoseStamped, queue_size=10)
@@ -27,9 +45,9 @@ def calculate_path_distance():
         if str(sys.argv[2]) == '1':
             start_point = PoseWithCovarianceStamped()
             #start point X
-            start_point.pose.pose.position.x = 621.998 
+            start_point.pose.pose.position.x = sys.argv[3] 
             #start point Y     
-            start_point.pose.pose.position.y = 309.295      
+            start_point.pose.pose.position.y = sys.argv[4]      
             start_point.header.stamp = rospy.Time.now()
             start_point.pose.pose.orientation.w = 1.0
             start_point.header.frame_id = 'map'
@@ -40,9 +58,9 @@ def calculate_path_distance():
             print "--------------------"
             goal_point = PoseStamped()
             #goal point X
-            goal_point.pose.position.x = 684.025    
+            goal_point.pose.position.x = sys.argv[5]    
             #goal point Y        
-            goal_point.pose.position.y = 509.816           
+            goal_point.pose.position.y = sys.argv[6]           
             goal_point.header.stamp = rospy.Time.now()
             goal_point.pose.orientation.w = 1.0
             goal_point.header.frame_id = 'map'
