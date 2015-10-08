@@ -1,20 +1,12 @@
 # How to use
 
-Run the script using:
+Parameters: nav_msgs/Path topic | automate start and goal points (1/0) | start point x | start point y | goal point x | goal point y
 
-python calculate_path_distance.py [Global Planner nav_msgs/Path topic] 0
+Example: python calculate_path_distance.py /move_base/NavfnROS/plan 1 1.0 0 100 37.42
 
-Then set a goal point (using rviz) and the script will calculate the distance of the path.
+If you run the script with automate start and goal points == 0, you can run it with only two parameters.
 
-For example for navfn the above command will be:
-
-python calculate_path_distance.py /move_base/NavfnROS/plan 0
-
-For automated start and goal points, run the script with the 1 flag (instead of 0).
-
-# Start and goal point automation
-
-To automate the start and goal points so that you can compare different global paths, you can edit the script in the lines start point X, start point Y, goal point X, goal point Y.
+Example: python calculate_path_distance.py /move_base/NavfnROS/plan 0
 
 # Robot not following the path
 
